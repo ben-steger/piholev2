@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name:  pihole-cloudflared
-        image: visibilityspots/cloudflared:amd64
+        image: visibilityspots/cloudflared:latest
         resources:
           requests:
             memory: "64Mi"
@@ -61,7 +61,19 @@ spec:
         volumeMounts:
         - name: pihole-volume
           mountPath: /
+        - name: pihole-adlists
+          mountPath: /etc/pihole/adlists.list
+          subPath: adlists.list
+        - name: pihole-regex
+          mountPath: /etc/pihole/regex.list
+          subPath: regex.list
       volumes:
         - name: pihole-volume
           persistentVolumeClaim:
             claimName: pihole-claim
+        - name: pihole-adlists
+          configMap:
+            name: pihole-adlists
+        - name: pihole-regex
+          configMap: 
+            name: pihole-regex
