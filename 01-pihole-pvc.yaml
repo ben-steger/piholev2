@@ -6,7 +6,6 @@ metadata:
   labels:
     app: pihole
   annotations:
-    kubesailEditorUid: 8f41edaa-1a20-45ac-9fdb-b70d145619fb
     volume.beta.kubernetes.io/storage-class: managed-nfs-storage
 spec:
   accessModes:
