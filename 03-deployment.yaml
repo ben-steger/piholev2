@@ -41,7 +41,7 @@ spec:
               name: pihole-env
               key: TZ
         - name: WEBPASSWORD
-          value: setasupersecretpassword
+          value: <setAsuperSecretPassword>
         - name: DNS1
           valueFrom:
             configMapKeyRef:
@@ -60,20 +60,9 @@ spec:
           containerPort: 53
         volumeMounts:
         - name: pihole-volume
-          mountPath: /
-        - name: pihole-adlists
-          mountPath: /etc/pihole/adlists.list
-          subPath: adlists.list
-        - name: pihole-regex
-          mountPath: /etc/pihole/regex.list
-          subPath: regex.list
+          mountPath: /etc/pihole
+          subPath: pihole
       volumes:
         - name: pihole-volume
           persistentVolumeClaim:
             claimName: pihole-claim
-        - name: pihole-adlists
-          configMap:
-            name: pihole-adlists
-        - name: pihole-regex
-          configMap: 
-            name: pihole-regex
